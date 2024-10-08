@@ -12,6 +12,7 @@ import (
 	finExecutor "soarca/internal/capability/fin"
 	"soarca/internal/capability/http"
 	"soarca/internal/capability/openc2"
+	"soarca/internal/capability/caldera"
 	"soarca/internal/capability/powershell"
 	"soarca/internal/capability/ssh"
 	"soarca/internal/decomposer"
@@ -73,6 +74,9 @@ func (controller *Controller) NewDecomposer() decomposer.IDecomposer {
 
 	poswershell := powershell.New()
 	capabilities[poswershell.GetType()] = poswershell
+
+	calderaCapability := caldera.New()
+	capabilities[calderaCapability.GetType()] = calderaCapability
 
 	enableFins, _ := strconv.ParseBool(utils.GetEnv("ENABLE_FINS", "false"))
 
